@@ -73,7 +73,7 @@ const AddForm = ({scoutName}) => {
     dob: '',
     gender: '', club: '', 
     position: '', scoutedBy: '',
-    foot: '', coachTel: '', region: '',  coachName: '', scoutedBy
+    foot: '', coachTel: '', region: '',  coachName: '', scoutedBy: '',
     image: null, // For storing the image file
   });
 
