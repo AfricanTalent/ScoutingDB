@@ -54,7 +54,7 @@ const Dashboard = () => {
         <div className='sidebar'>
           <div className="logo">
               <img src="/African Talent.png" alt="" />
-              <h4>African Talent Academy</h4>
+              <h4>ATFA</h4>
           </div>
           <ul>
               <li onClick={() => handleComponentChange(`A`)}>
