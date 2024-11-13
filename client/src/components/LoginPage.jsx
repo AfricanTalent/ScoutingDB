@@ -50,7 +50,7 @@ const LoginPage = () => {
       </div>
       <div className="login-box">
         {loading && <LoadingScreen/>}
-        <h4>Scout Login</h4>
+        <h2>Scout Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
