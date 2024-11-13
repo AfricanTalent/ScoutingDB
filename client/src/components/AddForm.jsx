@@ -73,7 +73,7 @@ const AddForm = ({scoutName}) => {
     dob: '',
     gender: '', club: '', 
     position: '', scoutedBy: '',
-    foot: '', coachTel: '', region: '',  coachName: '',
+    foot: '', coachTel: '', region: '',  coachName: '', scoutedBy
     image: null, // For storing the image file
   });
 
@@ -138,7 +138,7 @@ const AddForm = ({scoutName}) => {
     formData.append('Nationality', playerData.nationality);
     formData.append('NationalityISO', countrySearch.code);
     formData.append('Status', playerData.status);
-    formData.append('Scouted_By', scoutName);
+    formData.append('Scouted_By', playerData.scoutedBy);
 
     // const jsonData = {
     //   First_name: playerData.firstname,
@@ -243,6 +243,7 @@ const AddForm = ({scoutName}) => {
               <option value="Trials">Trials</option>
               <option value="Leave">Leave</option>
             </select>
+            <input type="text" name='scoutedBy' value={playerData.scoutedBy} onChange={handleInputChange} placeholder="Name of Scout" required/>
             <input type="file" id="image" name="image" onChange={handleFileChange}  accept="image/png , image/jpeg, image/jpg" required/>
             <div className="btnsub">
               <button type="submit" >Add Player</button>
