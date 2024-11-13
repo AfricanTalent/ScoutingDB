@@ -46,7 +46,7 @@ const LoginPage = () => {
       <div className="welcome-logo">
         <img src={logo} alt="" />
         <h1>Welcome to</h1>
-        <h2>African Talent Football Academy(AFTA)</h2>
+        <h2>African Talent Football Academy(ATFA)</h2>
       </div>
       <div className="login-box">
         {loading && <LoadingScreen/>}
