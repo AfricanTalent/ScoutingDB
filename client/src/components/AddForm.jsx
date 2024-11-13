@@ -243,7 +243,7 @@ const AddForm = ({scoutName}) => {
               <option value="Trials">Trials</option>
               <option value="Leave">Leave</option>
             </select>
-            <input type="text" name='' value={playerData.scoutedBy} onChange={handleInputChange} placeholder="Name of Scout" required/>
+            <input type="text" name='scoutedBy' value={playerData.scoutedBy} onChange={handleInputChange} placeholder="Name of Scout" required/>
             <input type="file" id="image" name="image" onChange={handleFileChange}  accept="image/png , image/jpeg, image/jpg" required/>
             <div className="btnsub">
               <button type="submit" >Add Player</button>
