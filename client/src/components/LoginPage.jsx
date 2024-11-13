@@ -46,11 +46,11 @@ const LoginPage = () => {
       <div className="welcome-logo">
         <img src={logo} alt="" />
         <h1>Welcome to</h1>
-        <h1 >African Talent Football Academy(AFTA)</h1>
+        <h2>African Talent Football Academy(AFTA)</h2>
       </div>
       <div className="login-box">
         {loading && <LoadingScreen/>}
-        <h1>Scout Login</h1>
+        <h4>Scout Login</h4>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
