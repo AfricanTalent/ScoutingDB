@@ -138,7 +138,7 @@ const AddForm = ({scoutName}) => {
     formData.append('Nationality', playerData.nationality);
     formData.append('NationalityISO', countrySearch.code);
     formData.append('Status', playerData.status);
-    formData.append('Scouted_By', playerData.);
+    formData.append('Scouted_By', playerData.scoutedBy);
 
     // const jsonData = {
     //   First_name: playerData.firstname,
