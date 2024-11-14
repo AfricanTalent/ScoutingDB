@@ -128,7 +128,11 @@ const EvaluationView = ({player}) => {
                 </div>
                 <div className="personal_detail">
                     <span>Conatct Coach: </span>
-                    <p>{"(+233)" + player.Number_of_coach}</p>
+                    <p>{player.Number_of_coach}</p>
+                </div>
+                <div className="personal_detail">
+                    <span>Date Added: </span>
+                    <p>{player.Date_Added}</p>
                 </div>
             <ExportStyledPDF player={player} evaluation={ratings}/>    
             </div>
