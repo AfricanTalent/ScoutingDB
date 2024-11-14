@@ -68,10 +68,10 @@ const ExportStyledPDF = ({player, evaluation}) => {
   
       // Evaluation Table
       const columns = ["Evaluation Metric", "Score"];
-      const notes = evaluation.note;  
+      const notes = evaluation.Note;  
       delete evaluation._id;
       delete evaluation.Player_id;
-      delete evaluation.notes;
+      delete evaluation.Note;
       const rows = Object.entries(evaluation).map(([key, value]) => [
         key,
         value,
