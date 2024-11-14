@@ -7,7 +7,6 @@ import LoadingScreen from "./Loading.jsx";
 
 const EvaluationForm = ({newPlayerId}) => {
   const evaluationCriteria = [
-    {id: 'Passing', label: "Passing",},
     {id: 'Technique', label: "Player's Technique",},
     {id: 'Endurance', label: "Player's Endurance",},
     {id: 'Speed', label: "Player's Speed",},
@@ -41,7 +40,7 @@ const EvaluationForm = ({newPlayerId}) => {
       average +=  num;
       }
     }
-    return Number((average/23).toFixed(2));
+    return Number((average/22).toFixed(2));
   };
     
   const [notes, setNotes] = useState();
@@ -85,7 +84,7 @@ const EvaluationForm = ({newPlayerId}) => {
         console.log(Object.keys(ratings).length);
         console.log("Notes ==== " + ratings.Note);
 
-        if(Object.keys(ratings).length < 26){
+        if(Object.keys(ratings).length < 25){
           setFlag("Incomplete evaluation, check a value for each evalution parameter");
           handleDialog();
         }else{
