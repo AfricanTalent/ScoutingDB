@@ -39,11 +39,12 @@ const createPlayers = async (req, res) => {
 
 
           // Create a new image document
+         const URL = process.env.ATLAS_URI;
           const player = new PlayerModel({
                First_name, Last_name, Gender, Date_of_Birth,
                Position, Nationality, NationalityISO, Club,
                Preferred_Foot, Status, Coach, Number_of_coach, Region_scouted_in, Scouted_By,
-               Image: `https://africantalentacademy.onrender.com/${req.file.path}`// store the image path
+               Image: `${URL}/${req.file.path}`// store the image path
           });
 
           await  db_connect.collection("player").insertOne(player) //req.body is request.body which means whatever the clients sends to the server must be shown in the console screen or browser
