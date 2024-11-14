@@ -28,6 +28,7 @@ const EvaluationForm = ({newPlayerId}) => {
     {id: 'Goalscoring', label: "Goalscoring",},
     {id: 'Offensive_heading', label: "Offensive_heading",},
     {id: 'Defensive_heading', label: "Defensive_heading",},
+    {id: '1v1_Defending', label: "1v1 Defending",},
     {id: 'Leadership', label: "Leadership",}
   ];
 
@@ -40,7 +41,7 @@ const EvaluationForm = ({newPlayerId}) => {
       average +=  num;
       }
     }
-    return Number((average/22).toFixed(2));
+    return Number((average/23).toFixed(2));
   };
     
   const [notes, setNotes] = useState();
@@ -84,7 +85,7 @@ const EvaluationForm = ({newPlayerId}) => {
         console.log(Object.keys(ratings).length);
         console.log("Notes ==== " + ratings.Note);
 
-        if(Object.keys(ratings).length < 25){
+        if(Object.keys(ratings).length < 26){
           setFlag("Incomplete evaluation, check a value for each evalution parameter");
           handleDialog();
         }else{
