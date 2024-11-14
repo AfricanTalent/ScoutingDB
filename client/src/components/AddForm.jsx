@@ -77,6 +77,11 @@ const AddForm = ({scoutName}) => {
     image: null, // For storing the image file
   });
 
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
   const [playerId, setplayerId] = useState(); 
   const [countryCode, setCountryCode] = useState(''); 
   const [imgName, setImgName] = useState(''); 
@@ -139,6 +144,7 @@ const AddForm = ({scoutName}) => {
     formData.append('NationalityISO', countrySearch.code);
     formData.append('Status', playerData.status);
     formData.append('Scouted_By', playerData.scoutedBy);
+    formData.append('Date_Added', getTodayDate());  
 
     // const jsonData = {
     //   First_name: playerData.firstname,
