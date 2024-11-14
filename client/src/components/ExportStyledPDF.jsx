@@ -53,7 +53,8 @@ const ExportStyledPDF = ({player, evaluation}) => {
       doc.text(`Date of Birth: ${formatDate(player.Date_of_Birth)}`, 20, 100);
       doc.text(`Nationality: ${player.Nationality}`, 20, 110);
       doc.text(`Position: ${player.Position}`, 20, 120);
-      doc.text(`Preferred Foot: ${player.Preferred_Foot}`, 20, 130);
+      doc.text(`Preferred Foot: ${player.Preferred_Foot}`, 20, 130);  
+      doc.text(`Preferred Foot: ${player.Date_Added}`, 20, 140);
       doc.text(`Club: ${player.Club}`, 110, 90);
       doc.text(`Region_scouted_in: ${player.Region_scouted_in}`, 110, 100);
       doc.text(`Coached by: ${player.Name_of_Coach}`, 110, 110);
@@ -61,7 +62,7 @@ const ExportStyledPDF = ({player, evaluation}) => {
       doc.text(`Scouted_By: ${player.Scouted_By}`, 110, 130);
   
       // Evaluation Table Title
-      const evaluationStartY = 145;
+      const evaluationStartY = 155;
       doc.setFontSize(14);
       doc.setTextColor(40);
       doc.text("Evaluation Parameters", 20, evaluationStartY);
