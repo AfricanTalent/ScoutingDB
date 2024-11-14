@@ -39,7 +39,7 @@ const createPlayers = async (req, res) => {
 
 
           // Create a new image document
-         const URL = process.env.ATLAS_URI;
+         const URL = process.env.REACT_APP_YOUR_HOSTNAME;
           const player = new PlayerModel({
                First_name, Last_name, Gender, Date_of_Birth,
                Position, Nationality, NationalityISO, Club,
