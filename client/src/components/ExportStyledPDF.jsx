@@ -68,8 +68,10 @@ const ExportStyledPDF = ({player, evaluation}) => {
   
       // Evaluation Table
       const columns = ["Evaluation Metric", "Score"];
+      const notes = evaluation.note;  
       delete evaluation._id;
       delete evaluation.Player_id;
+      delete evaluation.notes;
       const rows = Object.entries(evaluation).map(([key, value]) => [
         key,
         value,
@@ -85,6 +87,15 @@ const ExportStyledPDF = ({player, evaluation}) => {
         styles: { cellPadding: 5, halign: "center" },
         alternateRowStyles: { fillColor: [240, 240, 240] },
       });
+        
+        // Get the position where the table ends
+        const finalY = doc.lastAutoTable.finalY;
+        doc.setFontSize(14);
+        doc.text("Notes", 20, finalY + 15);
+
+        doc.setFontSize(14);
+        doc.text(`${notes}`, 20, finalY + 20);
+        
   
       // Save the PDF
       doc.save("Evaluation_Report.pdf");
