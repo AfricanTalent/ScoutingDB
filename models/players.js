@@ -16,6 +16,7 @@ const PlayerSchema = new mongoose.Schema({
     Number_of_coach: String,
     Region_scouted_in: String,
     Scouted_By: String,
+    Date_Added: Date,
     Image: String,
 })
 

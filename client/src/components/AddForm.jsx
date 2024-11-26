@@ -175,6 +175,7 @@ const AddForm = ({scoutName}) => {
         setplayerId(response._id);
         setFlagMessage(`Begin evaluation of ${playerData.firstname} ${playerData.lastname} ====>>>>`);
         setIsVisible(true);
+        handleNext();
       } catch (error) {
         console.error('Error saving player:', error);
       }finally{
@@ -228,9 +229,15 @@ const AddForm = ({scoutName}) => {
 
             <select name="position" id="position" value={playerData.position} onChange={handleInputChange}>
               <option value="">-- Select position --</option>
-              <option value="Foward">Foward</option>
-              <option value="Midfielder">Midfielder</option>
-              <option value="Defender">Defender</option>
+              <option value="Center Foward">Center Foward</option>
+              <option value="Right Winger">Right Winger</option>
+              <option value="Left Winger">Left Winger</option>
+              <option value="Central Attacking Midfielder">Central Attacking Midfielder</option>
+              <option value="Central Midfielder">Central Midfielder</option>
+              <option value="Defender Midfielder">Defender Midfielder</option>
+              <option value="Right Back">Right Back</option>
+              <option value="Left Back">Left Back</option>
+              <option value="Center Back">Center Back</option>
               <option value="Goalkeeper">Goalkeeper</option>
             </select>
             <select name="foot" id="foot" value={playerData.foot} onChange={handleInputChange} >
@@ -266,14 +273,14 @@ const AddForm = ({scoutName}) => {
       </div>
     </div>
 
-    <div className="navigation-buttons">
+    {/* <div className="navigation-buttons">
         <button onClick={handlePrev} disabled={step === 0}>
           Previous
         </button>
         <button onClick={handleNext} disabled={step === 1}>
           Next
         </button>
-      </div>
+      </div> */}
   </div>
   )
 }

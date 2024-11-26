@@ -202,6 +202,24 @@ const Datazone = ({scoutName}) => {
         }
       };
 
+      const positionMap = [
+        {"full": "Goalkeeper", "short": "GK"},
+        {"full": "Center Back", "short": "CB"},
+        {"full": "Left Back", "short": "LB"},
+        {"full": "Right Back", "short": "RB"},
+        {"full": "Defender Midfielder", "short": "DM"},
+        {"full": "Central Midfielder", "short": "CM"},
+        {"full": "Central Attacking Midfielder", "short": "CAM"},
+        {"full": "Left Winger", "short": "LW"},
+        {"full": "Right Winger", "short": "RW"},
+        {"full": "Center Foward", "short": "CF"},
+      ];
+
+      const positionMapping = (positionMap, data) => {
+        const shortform = positionMap.find((position) => position.full === data);
+        return shortform.short;
+      }
+
   return (
     <>
      {isEvaView && (<div className="evalution-pop" ref={evaluationRef}><EvaluationView player={selectedPlayer}/></div>)}
@@ -312,19 +330,19 @@ const Datazone = ({scoutName}) => {
             </td>
             <td>{formatDate(player.Date_of_Birth)}</td>
             
-            <td>{player.Position}</td>
+            <td>{positionMapping(positionMap, player.Position)}</td>
             <td>{player.Preferred_Foot}</td>
             <td>{player.Scouted_By}</td>
             <td className={`status`}>
               <div className={`${player.Status.toLowerCase()}`}></div>
             </td>
             <td className='trash-td'  onClick={(event) => deletePlayer(event, player._id)}>
-              <div className='trash-icon'>
+              <div className='trash-icon' title='delete'>
                 <FontAwesomeIcon icon={faTrash}/>
               </div>
             </td>
             <td className='edit-td'  onClick={() => {showUpadte();}}>
-              <div className='edit-icon'>
+              <div className='edit-icon' title='edit'>
                 <FontAwesomeIcon icon={faPencil}/>
               </div>
             </td>

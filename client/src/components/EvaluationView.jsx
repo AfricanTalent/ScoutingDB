@@ -132,7 +132,7 @@ const EvaluationView = ({player}) => {
                 </div>
                 <div className="personal_detail">
                     <span>Date Added: </span>
-                    <p>{player.Date_Added}</p>
+                    <p>{formatDate(player.Date_Added)}</p>
                 </div>
             <ExportStyledPDF player={player} evaluation={ratings}/>    
             </div>

@@ -101,7 +101,6 @@ const AddForm = ({player}) => {
 
   // Populate form data from props on component mount
   useEffect(() => {
-    console.log(player.Date_of_Birth);
     if (player) {
       setPlayerData({
         firstname: player.First_name || '', 
@@ -134,6 +133,13 @@ const AddForm = ({player}) => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    setPlayerData((prevData) => ({
+      ...prevData,
+      image: e.target.files[0],
+    }));
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -155,47 +161,28 @@ const AddForm = ({player}) => {
       setCountryCode("");
     }
 
-    // const formData = new FormData();
-    // formData.append('First_name', playerData.firstname);
-    // formData.append('Last_name', playerData.lastname);
-    // formData.append('Gender', playerData.gender);
-    // formData.append('Date_of_Birth', playerData.dob);
-    // formData.append('Position', playerData.position);
-    // formData.append('Preferred_Foot', playerData.foot);
-    // formData.append('Region_scouted_in', playerData.region);
-    // formData.append('Club', playerData.club);
-    // formData.append('Number_of_coach', playerData.coachTel);
-    // formData.append('Name_of_coach', playerData.coachName);
-    // // formData.append('Image', player.image);
-    // formData.append('Nationality', playerData.nationality);
-    // formData.append('NationalityISO', countrySearch.code);
-    // formData.append('Status', playerData.status);
-    // formData.append('Scouted_By', player.Scouted_By);
-
-    const jsonData = {
-      First_name: playerData.firstname,
-      Last_name: playerData.lastname,
-      Gender: playerData.gender,
-      Date_of_Birth: playerData.dob,
-      Position: playerData.position,
-      Preferred_Foot: playerData.foot,
-      Region_scouted_in: playerData.region,
-      Club: playerData.club,
-      Number_of_coach: playerData.coachTel,
-      Name_of_coach: playerData.coachName,
-      // Image: playerData.image,
-      Nationality: playerData.nationality,
-      NationalityISO: countrySearch.code,
-      Status: playerData.status,
-      Scouted_By: player.Scouted_By,
-    };
-
+    const formData = new FormData();
+    formData.append('First_name', playerData.firstname);
+    formData.append('Last_name', playerData.lastname);
+    formData.append('Gender', playerData.gender);
+    formData.append('Date_of_Birth', playerData.dob);
+    formData.append('Position', playerData.position);
+    formData.append('Preferred_Foot', playerData.foot);
+    formData.append('Region_scouted_in', playerData.region);
+    formData.append('Club', playerData.club);
+    formData.append('Number_of_coach', playerData.coachTel);
+    formData.append('Coach', playerData.coachName);
+    formData.append('Image', playerData.image);
+    formData.append('Nationality', playerData.nationality);
+    formData.append('NationalityISO', countrySearch.code);
+    formData.append('Status', playerData.status);
+    formData.append('Scouted_By', player.Scouted_By);
       
       try {
         
-        const response = await apiService.put(`/players/update/${player._id}/`, jsonData, {
+        const response = await apiService.put(`/players/update/${player._id}/`, formData, {
           headers: {
-            'Content-Type': "application/json",
+            'Content-Type': "multipart/form-data",
           },
         });
         // console.log('Player saved successfully:', response._id);
@@ -270,7 +257,7 @@ const AddForm = ({player}) => {
               <option value="Trials">Trials</option>
               <option value="Leave">Leave</option>
             </select>
-            {/* <input type="file" id="image" name="image" onChange={handleFileChange}  accept="image/png , image/jpeg, image/jpg" required/> */}
+            <input type="file" id="image" name="image" onChange={handleFileChange}  accept="image/png , image/jpeg, image/jpg"/>
             <div className="btnsub">
               <button type="submit" >Update Player</button>
             </div>
