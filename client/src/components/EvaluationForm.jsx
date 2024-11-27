@@ -4,7 +4,7 @@ import './css/responsive/EvaluationForm.css'
 import { apiService } from "../services/apiService";
 import LoadingScreen from "./Loading.jsx";
 
-
+ 
 const EvaluationForm = ({newPlayerId}) => {
   const evaluationCriteria = [
     {id: 'Technique', label: "Player's Technique",},

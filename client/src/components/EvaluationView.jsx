@@ -3,7 +3,7 @@ import './css/EvaluationView.css'
 import viteLogo from '/vite.svg';
 import { apiService } from "../services/apiService.js";
 import ExportStyledPDF from './ExportStyledPDF.jsx';
-
+ 
 
 const EvaluationView = ({player}) => {
 

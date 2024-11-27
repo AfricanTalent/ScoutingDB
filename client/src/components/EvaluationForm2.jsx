@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './css/EvaluationForm2.css'
 import { apiService } from "../services/apiService";
 
-
+ 
 const EvaluationForm2 = ({newPlayerId}) => {
 
     const evaluationCriteria = [

@@ -15,7 +15,7 @@ const LoginPage = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     setLoading(true);
     try {
       const response = await apiService.post("/scouts/signin/", {Email : email, Password: password}, {

@@ -9,7 +9,7 @@ const getPlayers = async (req,res) => {
     const db_connect = dbo.getDb()
     try{
         const players = await db_connect.collection("player").find({}).toArray()
-        res.status(200).json(players);
+        res.status(200).json(players); 
     } catch(error){
         console.log(error.message)
         res.status(500).json({message:error.message})

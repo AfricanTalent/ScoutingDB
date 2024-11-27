@@ -10,7 +10,7 @@ const AddForm = ({player}) => {
     { "name": "Algeria", "code": "DZ" },
     { "name": "Angola", "code": "AO" },
     { "name": "Benin", "code": "BJ" },
-    { "name": "Botswana", "code": "BW" },
+    { "name": "Botswana", "code": "BW" }, 
     { "name": "Burkina Faso", "code": "BF" },
     { "name": "Burundi", "code": "BI" },
     { "name": "Cabo Verde", "code": "CV" },

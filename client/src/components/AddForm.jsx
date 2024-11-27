@@ -3,7 +3,7 @@ import './css/AddForm.css'
 import './css/responsive/AddForm.css'
 import './css/responsive/EvaluationForm.css'
 import EvaluationForm from "./EvaluationForm";
-import LoadingScreen from "./Loading.jsx";
+import LoadingScreen from "./Loading.jsx"; 
 import { apiService } from "../services/apiService";
 
 import EvaluationForm2 from "./EvaluationForm2";
