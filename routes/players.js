@@ -10,3 +10,4 @@ router.route("/update/:id").put(upload.single('Image'),updatePlayers);
 router.route("/delete/:id").delete(deletePlayers)
 
 module.exports = router
+

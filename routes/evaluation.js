@@ -7,6 +7,4 @@ router.route("/:Player_id").get(getEvaluation);
 router.route("/").post(createEvaluation);
 router.route("/:id").delete( deleteEvaluation)
 
-
-
 module.exports = router

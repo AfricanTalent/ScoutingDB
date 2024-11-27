@@ -9,7 +9,7 @@ const EvaluationView = ({player}) => {
 
     const [ratings, setRatings] = useState([{}]);
     const [isRate, setIsRate] = useState(false);
-    const [err, setErr] = useState();
+    const [err, setErr] = useState(); 
 
     useEffect(() => {
         //Fetch all players from the database

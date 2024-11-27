@@ -5,7 +5,7 @@ import { apiService } from "../services/apiService";
 import EvaluationForm2 from "./EvaluationForm2";
 
 const AddForm = ({player}) => {
-
+ 
   const africanCountries = [
     { "name": "Algeria", "code": "DZ" },
     { "name": "Angola", "code": "AO" },

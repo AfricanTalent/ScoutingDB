@@ -9,7 +9,7 @@ import EvaluationForm from './EvaluationForm.jsx';
 import EvaluationView from './EvaluationView.jsx';
 import UpdateForm from './UpdateForm.jsx';
 import Flag from 'react-world-flags';
-  
+   
 const Datazone = ({scoutName}) => {
 
   const [players, setPlayers] = useState([]);   //State for storing all players

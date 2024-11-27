@@ -9,7 +9,7 @@ const PlayerSchema = new mongoose.Schema({
     Position: String,
     Nationality: String,
     NationalityISO: String,
-    Club: String,
+    Club: String, 
     Preferred_Foot: String,
     Status: String, 
     Coach: String,  

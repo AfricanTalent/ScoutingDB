@@ -6,7 +6,7 @@ import { faFileExport} from '@fortawesome/free-solid-svg-icons';
 import logo from '/African Talent.png';
 
 const ExportStyledPDF = ({player, evaluation}) => {
-       
+        
     // Function to format the date
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);

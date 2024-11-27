@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // React Router's hook to navigate to other routes
   const [loading, setLoading] = useState(false);
-
+ 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); 
