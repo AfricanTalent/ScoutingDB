@@ -333,8 +333,15 @@ const Datazone = ({scoutName}) => {
             <td>{positionMapping(positionMap, player.Position)}</td>
             <td>{player.Preferred_Foot}</td>
             <td>{player.Scouted_By}</td>
-            <td className={`status`}>
-              <div className={`${player.Status.toLowerCase()}`}></div>
+            <td className={`status`}
+              onMouseEnter={() => handleMouseEnter(`${player.Status.toLowerCase()}`)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className='tooltip'>
+                <div className={`${player.Status.toLowerCase()}`}></div>
+                <span class="tooltiptext">{`${player.Status}`}</span>
+              </div>
+              
             </td>
             <td className='trash-td'  onClick={(event) => deletePlayer(event, player._id)}>
               <div className='trash-icon' title='delete'>
