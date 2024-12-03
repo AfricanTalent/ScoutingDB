@@ -13,12 +13,56 @@ import AddForm from './AddForm'
 const Dashboard = () => {
 
   const location = useLocation();
-  const loginId = location.state?.message;
-  const scoutName = location.state?._scoutName; // Access the state passed via navigate
+  const [loginId, setLoginId] = useState(); 
+  const [scoutName, setScoutName] = useState();  // Access the state passed via navigate
   const [loading, setLoading] = useState(false);
   
 
   const [selectedComponent, setSelectedComponent] = useState('A');
+
+ useEffect(() => {
+    // const location = useLocation();
+    setLoginId(location.state?.message);
+    setScoutName(location.state?._scoutName); // Access the state passed via navigate
+
+    const verifyToken = async () => {
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            navigate('/'); // Redirect to homepage if no token
+            return;
+        }
+        try {
+            navigate("/dashboard");
+        } catch (error) {
+            localStorage.removeItem('jwtToken'); // Clear invalid token
+            navigate('/'); // Redirect to homepage
+        }
+    };
+
+      verifyToken();
+  }, [navigate]);
+
+ useEffect(() => {
+    let timer;
+    const resetTimer = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            localStorage.removeItem('jwtToken'); // Clear token
+            window.location.href = '/'; // Redirect to homepage
+        }, 5 * 60 * 1000); // 5 minutes inactivity
+    };
+
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keypress', resetTimer);
+
+    resetTimer(); // Initialize timer
+
+    return () => {
+        clearTimeout(timer);
+        window.removeEventListener('mousemove', resetTimer);
+        window.removeEventListener('keypress', resetTimer);
+    };
+}, []);
 
   // Function to handle switching of components
   const handleComponentChange = (component) => {
@@ -41,7 +85,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     
-    localStorage.removeItem("token");  // Remove JWT token
+    localStorage.removeItem("jwtToken");  // Remove JWT token
     navigate("/");  // Redirect back to login page
   };
 
