@@ -16,8 +16,7 @@ const Dashboard = () => {
   const [loginId, setLoginId] = useState(); 
   const [scoutName, setScoutName] = useState();  // Access the state passed via navigate
   const [loading, setLoading] = useState(false);
-  
-
+ const navigate = useNavigate();
   const [selectedComponent, setSelectedComponent] = useState('A');
 
  useEffect(() => {
@@ -82,7 +81,7 @@ const Dashboard = () => {
         return <Datazone key="A" scoutName={scoutName}/>;
     }
   }
-  const navigate = useNavigate();
+  
   const handleLogout = () => {
     
     localStorage.removeItem("jwtToken");  // Remove JWT token
