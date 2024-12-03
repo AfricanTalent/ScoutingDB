@@ -219,6 +219,16 @@ const Datazone = ({scoutName}) => {
         const shortform = positionMap.find((position) => position.full === data);
         return shortform.short;
       }
+   
+   // Function to handle mouse enter
+      const handleMouseEnter = (className) => {
+        setHoveredClass(className);
+      };
+
+      // Function to handle mouse leave
+      const handleMouseLeave = () => {
+        setHoveredClass('');
+      };
 
   return (
     <>
