@@ -127,7 +127,7 @@ const EvaluationView = ({player}) => {
                     <p>{player.Coach}</p>
                 </div>
                 <div className="personal_detail">
-                    <span>Conatct Coach: </span>
+                    <span>Contact Coach: </span>
                     <p>{player.Number_of_coach}</p>
                 </div>
                 <div className="personal_detail">
