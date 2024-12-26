@@ -187,8 +187,6 @@ const AddForm = ({player}) => {
         });
         // console.log('Player saved successfully:', response._id);
         setplayerId(response._id);
-        // setFlagMessage(`Player Update was successful`);
-        // setIsVisible(true);
         handleDialog();
       } catch (error) {
         console.error('Error saving player:', error);
