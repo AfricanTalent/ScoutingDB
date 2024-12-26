@@ -124,6 +124,7 @@ const Datazone = ({scoutName}) => {
       const [isEvaView, setisEvaView] = useState(false); // State to control visibility
       const [isUpdateView, setIsUpdateView] = useState(false); // State to control visibility
       const [yearFilterErr, setyearFilterErr] = useState();
+      const [hoveredClass, setHoveredClass] = useState('');
 
       const filterRef = useRef(null); // Reference to the filter section
       const evaluationRef = useRef(null);
@@ -349,7 +350,7 @@ const Datazone = ({scoutName}) => {
             >
               <div className='tooltip'>
                 <div className={`${player.Status.toLowerCase()}`}></div>
-                <span class="tooltiptext">{`${player.Status}`}</span>
+                <span className="tooltiptext">{`${player.Status}`}</span>
               </div>
               
             </td>

@@ -4,6 +4,8 @@ const path = require('path')
 require('dotenv').config();
 const dbo = require("../db/conn.js")
 const ObjectId = require("mongodb").ObjectId
+const cloudinary = require('../middlewares/cloudinaryService.js')
+
 
 const getPlayers = async (req,res) => {
     const db_connect = dbo.getDb()
@@ -28,14 +30,17 @@ const createPlayers = async (req, res) => {
                return res.status(400).json({ message: 'No file uploaded' });
           }
 
+          const ImgFile = req.file; // The uploaded file
+          const result = await cloudinary.uploader.upload(ImgFile.path, {
+               folder: 'uploads', // Optional: Specify folder in Cloudinary
+          });
 
-          // Create a new image document
-         const URL = process.env.REACT_HOSTNAME;
+
           const player = new PlayerModel({
                First_name, Last_name, Gender, Date_of_Birth,
                Position, Nationality, NationalityISO, Club,
                Preferred_Foot, Status, Coach, Number_of_coach, Region_scouted_in, Scouted_By, Date_Added,
-               Image: `${URL}/${req.file.path}`// store the image path
+               Image: result.secure_url// store the image path
           });
 
           await  db_connect.collection("player").insertOne(player) //req.body is request.body which means whatever the clients sends to the server must be shown in the console screen or browser
@@ -66,7 +71,7 @@ const updatePlayers = async (req, res) => {
                Number_of_coach: req.body.Number_of_coach,
                Region_scouted_in: req.body.Region_scouted_in,
                Scouted_By: req.body.Scouted_By,
-               Image: `${process.env.REACT_HOSTNAME}/${req.file.path}`
+               Image: result.secure_url,
           }} : 
           {
                $set: {
@@ -109,6 +114,9 @@ const deletePlayers = async (req, res) => {
           if (!player) {
                return res.status(404).json({message: "cannot find any player with ID ${id}"})
           }
+          const result = await cloudinary.api.delete_resources([`${player.Image}`], 
+               { type: 'upload', resource_type: 'image' })
+             .then(console.log("del successful"))
           res.status(200).json(player)
      }
      catch(error){

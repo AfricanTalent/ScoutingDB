@@ -161,8 +161,8 @@
 
 .status div{
     padding: 0.5rem 0.5rem;
-    max-width: 0.4rem;
-    height: 0.4rem;
+    margin: auto auto;
+    max-width:50%;
     border-radius: 50%;
   }
   

@@ -88,6 +88,7 @@ const AddForm = ({scoutName}) => {
   const [flagMessage, setFlagMessage] = useState(''); 
   const [isVisible, setIsVisible] = useState(false); 
   const [loading, setLoading] = useState(false); 
+  const [showDialog, setShowDialog] = useState(false); 
 
   // Handle changes for input fields
   const handleInputChange = (e) => {
@@ -107,16 +108,26 @@ const AddForm = ({scoutName}) => {
     setImgName( e.target.files[0].name);
   };
 
+  const handleDialog = () => {
+    setShowDialog(true);
+
+    // Automatically close the dialog after 2 seconds
+    setTimeout(() => {
+      setShowDialog(false);
+    }, 50000);
+  }
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     if (
-      playerData.gender.length === 0 || playerData.status.length === 0 || playerData.nationality.length === 0
-      || playerData.foot.length === 0 || playerData.position.length === 0
+      playerData.gender.length === 0 || playerData.status == undefined || playerData.nationality.length === 0
+      || playerData.foot.length === 0 || playerData.position == undefined
     ) {
-      setFlagMessage("Kindly enter all the details of the player");
       setIsVisible(true);
+      setLoading(false);
+      handleDialog();
       console.log("empty forms");
     } else {
       const countrySearch = africanCountries.find((africanCountry) => africanCountry.name === playerData.nationality);
@@ -146,25 +157,6 @@ const AddForm = ({scoutName}) => {
     formData.append('Scouted_By', playerData.scoutedBy);
     formData.append('Date_Added', getTodayDate());  
 
-    // const jsonData = {
-    //   First_name: playerData.firstname,
-    //   Last_name: playerData.lastname,
-    //   Gender: playerData.gender,
-    //   Date_of_Birth: playerData.dob,
-    //   Position: playerData.position,
-    //   Preferred_Foot: playerData.foot,
-    //   Region_scouted_in: playerData.region,
-    //   Club: playerData.club,
-    //   Number_of_coach: playerData.coachTel,
-    //   Name_of_coach: playerData.coachName,
-    //   Image: playerData.image,
-    //   Nationality: playerData.nationality,
-    //   NationalityISO: countrySearch.code,
-    //   Status: playerData.status,
-    //   Scouted_By: scoutName,
-    // };
-
-      
       try {
         
         const response = await apiService.post('/players/add/', formData, {
@@ -201,6 +193,16 @@ const AddForm = ({scoutName}) => {
 
   return(
     <div className="add-form-container">
+
+    {showDialog && (
+            <div className="addDialog">
+              <div className="dialogContent">
+                <h3>Some Fields must be filled</h3>
+                <p>[Nationality, Status, Gender, Preferred Foot, Position]</p>
+                <button onClick={() => setShowDialog(false)}>Close</button>
+              </div>
+            </div>
+          )}
       
     <div className="form-wrapper" style={{ transform: `translateX(-${step * 50}%)`}}>
       {/* Form 1 */}
