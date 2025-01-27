@@ -231,6 +231,24 @@ const Datazone = ({scoutName}) => {
         setHoveredClass('');
       };
 
+      const calculateAge = (dobString) => {
+        if (!dobString) return ''; // Handle empty input
+    
+        const dobDate = new Date(dobString); // Convert string to Date
+        const today = new Date();
+    
+        let years = today.getFullYear() - dobDate.getFullYear();
+        const monthDifference = today.getMonth() - dobDate.getMonth();
+        const dayDifference = today.getDate() - dobDate.getDate();
+    
+        // Adjust age if the birthday hasn't occurred yet this year
+        if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+          years--;
+        }
+    
+        return years.toString(); // Return age as a string
+      };
+
   return (
     <>
      {isEvaView && (<div className="evalution-pop" ref={evaluationRef}><EvaluationView player={selectedPlayer}/></div>)}
@@ -293,7 +311,7 @@ const Datazone = ({scoutName}) => {
             Nationality 
           </th>
           <th>
-            DOB
+            DOB (Age)
           </th>
           <th>
             Position
@@ -339,7 +357,7 @@ const Datazone = ({scoutName}) => {
               {player.Nationality}
               </div>
             </td>
-            <td>{formatDate(player.Date_of_Birth)}</td>
+            <td>{`${formatDate(player.Date_of_Birth)} (${calculateAge(player.Date_of_Birth)})`}</td>
             
             <td>{positionMapping(positionMap, player.Position)}</td>
             <td>{player.Preferred_Foot}</td>
