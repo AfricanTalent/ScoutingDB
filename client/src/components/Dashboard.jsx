@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Datazone from './Datazone'
 import Settings from './Settings'
+import Trials from './Trials'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faCog , faHome} from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faCog , faHome, faChartSimple} from '@fortawesome/free-solid-svg-icons';
  
 import './css/Dashboard.css'
 import './css/responsive/Dashboard.css'
@@ -16,8 +17,11 @@ const Dashboard = () => {
   const [loginId, setLoginId] = useState(); 
   const [scoutName, setScoutName] = useState();  // Access the state passed via navigate
   const [loading, setLoading] = useState(false);
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const [selectedComponent, setSelectedComponent] = useState('A');
+  const [activeIndex, setActiveIndex] = useState(null);
+
+    
 
  useEffect(() => {
     // const location = useLocation();
@@ -71,14 +75,20 @@ const Dashboard = () => {
     setSelectedComponent(component);
   };
 
+//   const handleComponentClick = (index) => {
+//     setActiveIndex(index);
+// };
+
   // Function to render the selected form component
   const renderComponent = () => {
     switch (selectedComponent) {
       case 'A':
         return <Datazone key="A" scoutName={scoutName}/>; // Provide unique key to force re-mount
       case 'B':
-        return <AddForm key="B" scoutName={scoutName}/>;
+        return <Trials key="B" scoutName={scoutName}/>;
       case 'C':
+        return <AddForm key="C" scoutName={scoutName}/>;
+      case 'D':
         return <Settings key="C" scoutId={loginId}/>;
       default:
         return <Datazone key="A" scoutName={scoutName}/>;
@@ -105,15 +115,19 @@ const Dashboard = () => {
               <h4>ATFA</h4>
           </div>
           <ul>
-              <li onClick={() => handleComponentChange(`A`)}>
+              <li onClick={() => handleComponentChange(`A`)} className={`${selectedComponent === `A` ? "active" : ""}`} >
                   <div className="dashIcon"><FontAwesomeIcon icon={faHome} /></div>
                   <span>Dashboard</span>
               </li>
-              <li onClick={() => handleComponentChange(`B`)}>
-                  <div className="dashIcon"><FontAwesomeIcon icon={faAdd} /></div>
+              <li onClick={() => handleComponentChange(`B`)} className={`${selectedComponent === `B` ? "active" : ""}`}>
+                  <div className="dashIcon"><FontAwesomeIcon icon={faChartSimple} /></div>
+                  <span>Trials</span>
+              </li>
+              <li onClick={() => handleComponentChange(`C`)} className={`${selectedComponent === `C` ? "active" : ""}`}>
+                  <div className="dashIcon"><FontAwesomeIcon icon={faAdd}/></div>
                   <span>Add Player</span>
               </li>
-              <li onClick={() => handleComponentChange(`C`)}>
+              <li onClick={() => handleComponentChange(`D`)} className={`${selectedComponent === `D` ? "active" : ""}`}>
                   <div className="dashIcon"><FontAwesomeIcon icon={faCog}/></div>
                   <span>Change Password</span>
               </li>

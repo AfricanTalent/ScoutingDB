@@ -133,9 +133,112 @@ const deletePlayers = async (req, res) => {
      }
 }
 
+const getTrialPlayers = async(req, res) => {
+     const db_connect = dbo.getDb()
+     try{
+          const playersOnTrial = await db_connect.collection("player").find({ Status: "Trials" }).toArray();
+          if (!playersOnTrial) {
+               return res.status(404).json({message: "cannot find any player on trials"})
+          }
+          res.status(200).json(playersOnTrial)
+     }catch(error){
+          res.status(500).json({message: error.message})
+     }
+}
+
+const addComment = async (req, res) => {
+     const db_connect = dbo.getDb()
+     const myquery = { _id: new ObjectId(req.params.id) }
+     const body =  {
+          $push: {
+               Comments: req.body
+          }}
+
+     try{
+          var player = await  db_connect.collection("player").updateOne(myquery, body)
+          
+          //if we cant find any player in database
+          if(!player){
+               return res.status(404).json({message: "cannot find any player with ID ${id}"})
+          }
+          res.status(200).json(player)
+     } catch(error){
+          res.status(500).json({message: error.message})
+     }
+}
+
+const getComments = async (req,res) => {
+     const db_connect = dbo.getDb()
+     try{
+          const myquery = { _id: new ObjectId(req.params.id) }
+         
+          // Find players that belong to the specified team and populate the team reference
+          const search = await db_connect.collection("player").findOne(myquery)
+
+          if (search.length === 0) {
+               return res.status(404).json({ message: 'No player found' });
+          }
+        
+          res.status(200).json(search);
+          console.log(search);
+   } catch(error){
+        console.log(error.message)
+        res.status(500).json({message:error.message})
+   }
+}
+
+const addStartDate = async (req, res) => {
+     const db_connect = dbo.getDb()
+     const myquery = { _id: new ObjectId(req.params.id) }
+     const body =  {
+          $set: {
+               TrialsStart: req.body.TrialsStart
+          }}
+
+     try{
+          var player = await  db_connect.collection("player").updateOne(myquery, body)
+          
+          //if we cant find any player in database
+          if(!player){
+               return res.status(404).json({message: "cannot find any player with ID ${id}"})
+          }
+          res.status(200).json(player)
+     } catch(error){
+          res.status(500).json({message: error.message})
+     }
+}
+
+const addEndDate = async (req, res) => {
+     const db_connect = dbo.getDb()
+     const myquery = { _id: new ObjectId(req.params.id) }
+     const body =  {
+          $set: {
+               TrialsEnd: req.body.TrialsEnd
+          }}
+
+     try{
+          var player = await  db_connect.collection("player").updateOne(myquery, body)
+          
+          //if we cant find any player in database
+          if(!player){
+               return res.status(404).json({message: "cannot find any player with ID ${id}"})
+          }
+          res.status(200).json(player)
+     } catch(error){
+          res.status(500).json({message: error.message})
+     }
+}
+
+
+
 module.exports = {
      getPlayers,
      createPlayers,
      updatePlayers,
      deletePlayers,
+     getTrialPlayers,
+     addComment,
+     getComments,
+     addStartDate,
+     addEndDate
 }

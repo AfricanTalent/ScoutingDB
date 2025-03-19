@@ -18,6 +18,14 @@ const PlayerSchema = new mongoose.Schema({
     Scouted_By: String,
     Date_Added: Date,
     Image: String,
+    TrialsStart: Date,
+    TrialsEnd: Date,
+    Comments: [
+        {
+            comment: String,
+            dateCreated: Date
+        }
+    ]
 })
 
 const PlayerModel = mongoose.model("Player", PlayerSchema) //creating a collection

@@ -40,6 +40,11 @@
     color: #FAF9F6;
 }
 
+.sidebar > ul > li.active{
+    background: var(--primary);
+    color: #FAF9F6;
+}
+
 .sidebar > ul > li > .dashIcon{
     font-size: 1.1rem;
     margin-right: 1rem;
