@@ -1,0 +1,28 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const DetectBackspace = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Backspace") {
+        navigate("/login"); // Redirect to login page
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+    
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [navigate]);
+
+  return (
+    <div>
+      <h2>Press Backspace to go to Login</h2>
+    </div>
+  );
+};
+
+export default DetectBackspace;
