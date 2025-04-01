@@ -11,8 +11,8 @@ const TrialsInfo = ({player}) => {
     const [comment, setComment] = useState("");
     const [startDate, setStartDate] = useState(""); // Holds the selected date
     const [endDate, setEndDate] = useState(""); // Holds the selected date
-    const [isDisabled, setIsDisabled] = useState(false);
-    const [isEndDisabled, setIsEndDisabled] = useState(false);
+    // const [isDisabled, setIsDisabled] = useState(false);
+    // const [isEndDisabled, setIsEndDisabled] = useState(false);
 
     const formatDateOnly = (isoDate) => {
         const date = new Date(isoDate);
@@ -29,11 +29,11 @@ const TrialsInfo = ({player}) => {
             
             if(playerSearch.TrialsStart){
                 setStartDate(playerSearch.TrialsStart);
-                setIsDisabled(true);
+                // setIsDisabled(true);
             }
             if(playerSearch.TrialsEnd){
                 setStartDate(playerSearch.TrialsStart);
-                setIsEndDisabled(true);
+                // setIsEndDisabled(true);
             }
             
             
@@ -90,8 +90,8 @@ const TrialsInfo = ({player}) => {
         const confirmSave = window.confirm(`Are you sure you want to start trials on ${newDate} ?`);
 
         if (confirmSave) {
-            setEndDate (newDate);
-            setIsDisabled(true); // Disable the input field
+            setStartDate (newDate);
+            // setIsDisabled(true); // Disable the input field
             try {
                 const data = {
                     TrialsStart: newDate
@@ -117,12 +117,10 @@ const TrialsInfo = ({player}) => {
         }else{
             confirmSave = window.confirm(`Are you sure you want to end the trials on ${newDate}?`);
         }
-        // Ask for confirmation
-        console.log(`this is the enddate ${endDate}`);
 
         if (!confirmSave) {
             setEndDate(endDate);
-            setIsEndDisabled(false); // Disable the input field
+            // setIsEndDisabled(false); // Disable the input field
             try {
                 const data = {
                     TrialsStart: newDate
@@ -202,11 +200,11 @@ const TrialsInfo = ({player}) => {
             <div className="trial_question">
                 <div className="trial_date">
                     <p>Trials Start Date</p>
-                    <input type="date" value={startDate} onChange={handleDateChange} disabled={isDisabled}/>
+                    <input type="date" value={startDate} onChange={handleDateChange} />
                 </div>
                 <div className="trial_date">
                     <p>Trials End Date</p>
-                    <input type="date" value={endDate} onChange={handleEndTrialsChange} disabled={isEndDisabled}/>
+                    <input type="date" value={endDate} onChange={handleEndTrialsChange}/>
                 </div>
             </div>
         </div>
@@ -217,7 +215,7 @@ const TrialsInfo = ({player}) => {
                     <div className="link-input">
                         <textarea type="text" name='comment' value={comment} onChange={handleInputChange} placeholder="Comment On Trials" required/>
                     </div>
-                    <button type="submit" className='addLink' disabled={!isDisabled}>
+                    <button type="submit" className='addLink'>
                         Add Comment
                     </button>
                 </form>
