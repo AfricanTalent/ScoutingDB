@@ -128,7 +128,7 @@ const TrialsInfo = ({player}) => {
                 const response = await apiService.put(`/players/trials/endDate/${player._id}`, data, {
                     headers: {
                       'Content-Type': "application/json",
-                    },
+                    }, 
                   });
     
                 
