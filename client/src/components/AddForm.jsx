@@ -122,13 +122,12 @@ const AddForm = ({scoutName}) => {
     e.preventDefault();
     setLoading(true);
     if (
-      playerData.gender.length === 0 || playerData.status == undefined || playerData.nationality.length === 0
-      || playerData.foot.length === 0 || playerData.position == undefined
+      playerData?.gender.length === 0 || playerData?.status == undefined || playerData.nationality?.length === 0
+      || playerData?.foot.length === 0 || playerData.position?.length == 0
     ) {
       setIsVisible(true);
       setLoading(false);
       handleDialog();
-      console.log("empty forms");
     } else {
       const countrySearch = africanCountries.find((africanCountry) => africanCountry.name === playerData.nationality);
     
